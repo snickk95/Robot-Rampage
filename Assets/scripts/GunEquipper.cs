@@ -31,7 +31,7 @@ public class GunEquipper : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    // set so that when you push 1 2 or 3 you switch to the weapon
     void Update()
     {
         if(Input.GetKeyDown("1"))
