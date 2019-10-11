@@ -6,6 +6,10 @@ public class GunEquipper : MonoBehaviour
 {
     public static string activeWeponType;
 
+    //create a refrence to the game ui script
+    [SerializeField]
+    GameUI gameUI;
+
     public GameObject pistol;
     public GameObject assultRiffle;
     public GameObject shotGun;
@@ -38,18 +42,22 @@ public class GunEquipper : MonoBehaviour
         {
             loadWepon(pistol);
             activeWeponType = Constants.pistol;
+            //calls the up date for sights script
+            gameUI.UpdateReticle();
             
         }
         else if (Input.GetKeyDown("2"))
         {
             loadWepon(assultRiffle);
             activeWeponType = Constants.assultRifle;
+            gameUI.UpdateReticle();
         }
         
         else if (Input.GetKeyDown("3"))
         {
             loadWepon(shotGun);
             activeWeponType = Constants.shotgun;
+            gameUI.UpdateReticle();
         }
     }
 
