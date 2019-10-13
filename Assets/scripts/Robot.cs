@@ -8,6 +8,16 @@ public class Robot : MonoBehaviour
     GameObject missileprefab;
 
     [SerializeField]
+    private AudioClip deathSound;
+
+    [SerializeField]
+    private AudioClip fireSound;
+
+    [SerializeField]
+    private AudioClip weakHitSound;
+
+
+        [SerializeField]
     private string robotType;
 
     public int health;
@@ -48,6 +58,15 @@ public class Robot : MonoBehaviour
             isdead = true;
             robot.Play("die");
             StartCoroutine("DestroyRobot");
+
+            //plays death souind for robot
+            GetComponent<AudioSource>().PlayOneShot(deathSound);
+
+        }
+        else
+        {
+            //plays a hit sound
+            GetComponent<AudioSource>().PlayOneShot(weakHitSound);
         }
        
     }
@@ -90,5 +109,7 @@ public class Robot : MonoBehaviour
         missile.transform.rotation = missileFireSpot.transform.rotation;
 
         robot.Play("fire");
+        //play audio for firing
+        GetComponent<AudioSource>().PlayOneShot(fireSound);
     }
 }
