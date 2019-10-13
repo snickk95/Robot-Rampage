@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
+
     [SerializeField]
     private string robotType;
 
@@ -19,6 +20,8 @@ public class Robot : MonoBehaviour
     private float timeLastFired;
 
     private bool isdead;
+
+    public Animator robot;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,6 @@ public class Robot : MonoBehaviour
     }
   private void fire ()
     {
-        Debug.Log("fire");
+        robot.Play("fire");
     }
 }
