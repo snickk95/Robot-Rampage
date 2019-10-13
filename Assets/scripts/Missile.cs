@@ -12,6 +12,18 @@ public class Missile : MonoBehaviour
         StartCoroutine("deathTimer");
     }
 
+    //checks if the missle hit the player if it does it will pass the damage into the take damage function in the player script
+     void OnCollisionEnter(Collision collider)
+    {
+      if(collider.gameObject.GetComponent<Player>() !=null && collider.gameObject.tag=="Player" )
+        {
+            collider.gameObject.GetComponent<Player>().takeDamage(damage);
+        }
+
+        Destroy(gameObject);
+        
+    }
+
     //move the missle
     void Update()
     {
