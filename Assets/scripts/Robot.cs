@@ -34,6 +34,31 @@ public class Robot : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
+    //same as the player take damage but also calls a death animation for the robot
+    public void takeDamage(int amount)
+    {
+        if (isdead)
+        {
+            return;
+        }
+
+        health -= amount;
+        if (health<=0)
+        {
+            isdead = true;
+            robot.Play("die");
+            StartCoroutine("DestroyRobot");
+        }
+       
+    }
+
+    //adds a delay to the destroy of the robot so the animation can play
+    IEnumerator DestroyRobot()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
