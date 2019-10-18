@@ -11,14 +11,6 @@ public class robotSpawn : MonoBehaviour
     private int timesSpawned;
     private int healthBonus = 0;
 
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     //creates a robot sets it's health and psoition
     public void spawnRobot()
     {
@@ -30,6 +22,14 @@ public class robotSpawn : MonoBehaviour
         robot.transform.position = transform.position;
         robot.GetComponent<Robot>().health += healthBonus;
     }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+  
 
     // Update is called once per frame
     void Update()
