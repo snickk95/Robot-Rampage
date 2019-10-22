@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Game : MonoBehaviour
 {
     private static Game singleton;
+
+    public GameUI gameUI;
+
+    public GameObject player;
+
+    public int score;
+    public int waveCountdown;
+
+    public bool isGameOver;
+
+
 
     [SerializeField]
     robotSpawn[] spawns;
@@ -15,9 +27,60 @@ public class Game : MonoBehaviour
     {
         //initalize the singlton then calls the spawn robot function
         singleton = this;
+        StartCoroutine("increaseScoreEachSec");
+        isGameOver = false;
+        Time.timeScale = 1;
+        waveCountdown = 30;
+        enemiesLeft = 0;
+        StartCoroutine("UpdateWaveTimer");
         spawnRobots();
     }
-    
+
+    private IEnumerator UpdateWaveTimer()
+    {
+        while (!isGameOver)
+        {
+            yield return new WaitForSeconds(1);
+            waveCountdown--;
+            gameUI.setWaveText(waveCountdown);
+
+
+            if (waveCountdown == 0)
+            {
+                spawnRobots();
+                waveCountdown = 30;
+                gameUI.ShowNewWaveText();
+            }
+        }
+    }
+
+    public static void RemoveEnemy()
+    {
+        singleton.enemiesLeft--;
+        singleton.gameUI.setEnemyText(singleton.enemiesLeft);
+
+        if (singleton.enemiesLeft == 0)
+        {
+            singleton.score += 50;
+            singleton.gameUI.ShowWaveClearBonus();
+
+        }
+    }
+
+    public void AddRobotKillToScore()
+    {
+        score += 10;
+        gameUI.setScoreText(score);
+    }
+
+    IEnumerator increaseScoreEachSec()
+    {
+        yield return new WaitForSeconds(1);
+        score += 1;
+        gameUI.setScoreText(score);
+    }
+        
+
 
     private void spawnRobots()
     {
@@ -26,6 +89,8 @@ public class Game : MonoBehaviour
         {
             spawn.spawnRobot();
             enemiesLeft++;
+            gameUI.setEnemyText(enemiesLeft);
+            Game.RemoveEnemy();
         }
     }
     // Update is called once per frame

@@ -25,18 +25,28 @@ public class Player : MonoBehaviour
         {
             health = 200;
         }
+        gameUI.SetPickUpText("health picked up + 50 Health");
+        gameUI.setHealthText(health);
     }
 
     //add armor
     private void pickUpArmor()
     {
         armor += 15;
+        gameUI.SetPickUpText("Armor picked up + 15 armor");
+        gameUI.setArmorText(armor);
     }
 
     //add assultrifle ammo
     private void PickUpAssulAmmo()
     {
         ammo.AddAmmo(Constants.assultRifle, 50);
+
+        gameUI.SetPickUpText("Assult Riffle Ammo picked up + 50 Ammo");
+        if (gunEquipper.GetActiveWeapon().tag ==Constants.assultRifle)
+        {
+            gameUI.setAmmoText(ammo.getAmmo(Constants.assultRifle));
+        }
     }
 
 
@@ -44,12 +54,24 @@ public class Player : MonoBehaviour
     private void PickUpPistolAmmo()
     {
         ammo.AddAmmo(Constants.pistol, 20);
+
+        gameUI.SetPickUpText("Pistol Ammo picked up + 20 Ammo");
+        if (gunEquipper.GetActiveWeapon().tag == Constants.pistol)
+        {
+            gameUI.setAmmoText(ammo.getAmmo(Constants.pistol));
+        }
     }
 
     // add shot gun ammo
     private void PickUpShotgunAmmo()
     {
         ammo.AddAmmo(Constants.shotgun, 10);
+
+        gameUI.SetPickUpText("Shotgun Ammo picked up + 10 Ammo");
+        if (gunEquipper.GetActiveWeapon().tag == Constants.shotgun)
+        {
+            gameUI.setAmmoText(ammo.getAmmo(Constants.shotgun));
+        }
     }
 
 
@@ -101,14 +123,16 @@ public class Player : MonoBehaviour
             if (effectiveArmor>0)
             {
                 armor = effectiveArmor / 2;
+                gameUI.setArmorText(armor);
                 return;
             }
 
             armor = 0;
+            gameUI.setArmorText(armor);
         }
 
         health -= healthDamage;
-        Debug.Log("health is " + health);
+        gameUI.setHealthText(health);
 
         if (health<=0)
         {

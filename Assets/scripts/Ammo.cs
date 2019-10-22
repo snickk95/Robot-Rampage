@@ -72,6 +72,7 @@ public class Ammo : MonoBehaviour
         }
 
         tagToAmmo[tag]--;
+        gameUI.setAmmoText(tagToAmmo[tag]);
     }
     // Update is called once per frame
     void Update()
