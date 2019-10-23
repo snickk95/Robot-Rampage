@@ -134,7 +134,7 @@ public class Game : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(Constants.sceneMenu);
+        SceneManager.LoadScene("MainMenu");
     }
 
     // Update is called once per frame
