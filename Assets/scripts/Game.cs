@@ -72,7 +72,7 @@ public class Game : MonoBehaviour
         {
             singleton.score += 50;
             singleton.gameUI.ShowWaveClearBonus();
-           
+            singleton.gameUI.setScoreText(singleton.score);
 
         }
     }

@@ -110,7 +110,7 @@ public class Robot : MonoBehaviour
         missile.transform.position = missileFireSpot.transform.position;
         missile.transform.rotation = missileFireSpot.transform.rotation;
 
-        robot.Play("fire");
+        robot.Play("missile");
         //play audio for firing
         GetComponent<AudioSource>().PlayOneShot(fireSound);
     }
