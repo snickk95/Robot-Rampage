@@ -56,7 +56,7 @@ public class GameUI : MonoBehaviour
 
     public void setScoreText(int score)
     {
-        scoreText.text ="Score: " +score;
+        scoreText.text ="Score: " + score;
     }
 
     public void setAmmoText(int ammo)

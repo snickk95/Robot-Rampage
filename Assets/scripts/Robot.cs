@@ -76,6 +76,8 @@ public class Robot : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
+        
+        Game.RemoveEnemy();
     }
 
     // Update is called once per frame

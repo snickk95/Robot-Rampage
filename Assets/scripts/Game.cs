@@ -65,11 +65,14 @@ public class Game : MonoBehaviour
     {
         singleton.enemiesLeft--;
         singleton.gameUI.setEnemyText(singleton.enemiesLeft);
+        singleton.AddRobotKillToScore();
+
 
         if (singleton.enemiesLeft == 0)
         {
             singleton.score += 50;
             singleton.gameUI.ShowWaveClearBonus();
+           
 
         }
     }
@@ -82,8 +85,8 @@ public class Game : MonoBehaviour
 
     IEnumerator increaseScoreEachSec()
     {
-        yield return new WaitForSeconds(1f);
-        score += 1;
+        yield return new WaitForSeconds(1);
+        score ++;
         gameUI.setScoreText(score);
     }
         
@@ -97,7 +100,8 @@ public class Game : MonoBehaviour
             spawn.spawnRobot();
             enemiesLeft++;
             gameUI.setEnemyText(enemiesLeft);
-            Game.RemoveEnemy();
+            
+            
         }
     }
 
@@ -140,6 +144,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //StartCoroutine("increaseScoreEachSec");
+       
     }
 }
