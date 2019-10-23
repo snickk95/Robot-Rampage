@@ -75,7 +75,7 @@ public class Game : MonoBehaviour
 
     IEnumerator increaseScoreEachSec()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         score += 1;
         gameUI.setScoreText(score);
     }
