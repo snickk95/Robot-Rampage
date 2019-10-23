@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    public GameObject gameOverPannel;
+
     private static Game singleton;
 
     public GameUI gameUI;
@@ -54,6 +57,10 @@ public class Game : MonoBehaviour
         }
     }
 
+
+
+
+
     public static void RemoveEnemy()
     {
         singleton.enemiesLeft--;
@@ -93,6 +100,43 @@ public class Game : MonoBehaviour
             Game.RemoveEnemy();
         }
     }
+
+
+    public void OnGUI()
+    {
+        if(isGameOver&& Cursor.visible==false)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        Time.timeScale = 0;
+        player.GetComponent<FirstPersonController>().enabled = false;
+        player.GetComponent<CharacterController>().enabled = false;
+        gameOverPannel.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(Constants.sceneBattle);
+        gameOverPannel.SetActive(true);
+    }
+
+
+    public void quit()
+    {
+        Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(Constants.sceneMenu);
+    }
+
     // Update is called once per frame
     void Update()
     {
