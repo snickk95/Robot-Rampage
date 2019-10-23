@@ -15,7 +15,7 @@ public class Game : MonoBehaviour
     public GameObject player;
 
     public int score;
-    public int waveCountdown;
+    public int waveCountdown = 30;
 
     public bool isGameOver;
 
@@ -44,8 +44,9 @@ public class Game : MonoBehaviour
         while (!isGameOver)
         {
             yield return new WaitForSeconds(1);
-            waveCountdown--;
             gameUI.setWaveText(waveCountdown);
+            waveCountdown--;
+           
 
 
             if (waveCountdown == 0)
@@ -85,9 +86,13 @@ public class Game : MonoBehaviour
 
     IEnumerator increaseScoreEachSec()
     {
-        yield return new WaitForSeconds(1);
-        score ++;
-        gameUI.setScoreText(score);
+        while(!isGameOver)
+        {
+            yield return new WaitForSeconds(1);
+            score++;
+            gameUI.setScoreText(score);
+        }
+       
     }
         
 

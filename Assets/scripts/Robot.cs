@@ -39,7 +39,7 @@ public class Robot : MonoBehaviour
     {
         // the robots are set to true to begin with so we need to set that value 
         isdead = false;
-        //set the agent nav mash and player location oon start up
+        //set the agent nav mash and player location on start up
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -59,7 +59,7 @@ public class Robot : MonoBehaviour
             robot.Play("die");
             StartCoroutine("DestroyRobot");
 
-            //plays death souind for robot
+            //plays death sound for robot
             GetComponent<AudioSource>().PlayOneShot(deathSound);
 
         }

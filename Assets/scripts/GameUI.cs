@@ -66,7 +66,7 @@ public class GameUI : MonoBehaviour
 
     public void setWaveText(int time)
     {
-        newWaveText.text = "Next Wave: " + time;
+        waveText.text = "Next Wave: " + time;
     }
 
 
